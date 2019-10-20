@@ -1,3 +1,55 @@
 h1 {
   margin-left: 15px;
 }
+
+.data {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px #222a4b;
+
+  hr {
+    width: 100%;
+  }
+
+  footer {
+    font-size: x-small;
+    font-style: italic;
+  }
+
+  .current-results {
+    cursor: pointer;
+
+    .total-cash {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .stats {
+    font-size: small;
+  }
+}
+
+.score-form {
+  padding-top: 20px;
+
+  mat-slider {
+    width: 200px;
+  }
+
+  .earnings {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+  }
+}
+
+.winning {
+  color: green;
+}
+
+.losing {
+  color: red;
+}

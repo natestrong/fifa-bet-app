@@ -7,6 +7,8 @@ import {MaterialModule} from './material.module'
 import {FlexLayoutModule} from '@angular/flex-layout'
 import {ServiceWorkerModule} from '@angular/service-worker'
 import {environment} from '../environments/environment'
+import {MatButtonModule} from '@angular/material'
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -18,12 +20,10 @@ import {environment} from '../environments/environment'
     MaterialModule,
     FlexLayoutModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-    console.log('hi')
-  }
 }

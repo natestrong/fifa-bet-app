@@ -1,4 +1,76 @@
 <mat-toolbar color="primary">
   <mat-icon>sports_soccer</mat-icon>
-  <h1>Fifa Bet</h1>
+  <h1>FIFA BET</h1>
 </mat-toolbar>
+
+<section class="data">
+  <div class="current-results"
+       fxLayout="column"
+       fxLayoutGap="10px"
+       (click)="show_stats = !show_stats">
+    <div class="total-cash" [ngClass]="{'winning': cash > 0, 'losing': cash < 0}">
+      Total Cash: {{cash | currency}}
+    </div>
+    <div>Cost for a Match: {{division_base_bets[division_level] | currency}}</div>
+    <div>Cost for each Goal: {{(division_base_bets[division_level] * goal_cost_multiplier) | currency}}</div>
+    <footer>(click to hide/show stats)</footer>
+  </div>
+  <div *ngIf="show_stats"
+       class="stats"
+       fxLayout="column"
+       fxLayoutGap="3px">
+    <hr>
+    <div>Games Played: {{games_played}}</div>
+    <div>Games Won: {{games_won}}</div>
+    <div>Games Lost: {{games_won}}</div>
+    <div>Goals For: {{goals_for}}</div>
+    <div>Goals For: {{goals_against}}</div>
+  </div>
+</section>
+
+<section>
+  <form class="score-form"
+        #form="ngForm"
+        (ngSubmit)="onGameResultsSubmit(form)"
+        fxLayout="column"
+        fxLayoutAlign="space-around center">
+
+    <div>Current Division: {{division_level}}</div>
+    <mat-slider
+      invert="true"
+      [max]="division_slider_max"
+      [min]="division_slider_min"
+      [thumbLabel]="division_slider_thumbLabel"
+      [(value)]="division_level">
+    </mat-slider>
+
+    <mat-form-field class="">
+      <input matInput
+             type="number"
+             label="Your Goals"
+             ngModel
+             name="player_goals"
+             required
+             placeholder="Your Score">
+    </mat-form-field>
+    <mat-form-field class="">
+      <input matInput
+             type="number"
+             label="Opponent Goals"
+             ngModel
+             name="opponent_goals"
+             required
+             placeholder="Opponent Goals">
+    </mat-form-field>
+    <div class="earnings"
+         [ngClass]="{'winning': current_earnings_calculation > 0, 'losing': current_earnings_calculation < 0}">
+      {{calculateEarnings(form.value.player_goals, form.value.opponent_goals) | currency}}
+    </div>
+    <button color="accent"
+            type="submit"
+            [disabled]="form.invalid"
+            mat-raised-button>
+      Submit
+    </button>
+  </form>
+</section>
