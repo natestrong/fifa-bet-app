@@ -44,24 +44,42 @@
       [(value)]="division_level">
     </mat-slider>
 
-    <mat-form-field class="">
-      <input matInput
-             type="number"
-             label="Your Goals"
-             ngModel
-             name="player_goals"
-             required
-             placeholder="Your Score">
-    </mat-form-field>
-    <mat-form-field class="">
-      <input matInput
-             type="number"
-             label="Opponent Goals"
-             ngModel
-             name="opponent_goals"
-             required
-             placeholder="Opponent Goals">
-    </mat-form-field>
+    <div fxLayout fxLayoutGap="8px">
+<!--      <button mat-mini-fab color="primary">-->
+<!--        <mat-icon>remove</mat-icon>-->
+<!--      </button>-->
+      <mat-form-field class="">
+        <input matInput
+               type="number"
+               label="Your Goals"
+               ngModel
+               name="player_goals"
+               required
+               placeholder="Your Goals">
+      </mat-form-field>
+<!--      <button mat-mini-fab color="primary">-->
+<!--        <mat-icon>add</mat-icon>-->
+<!--      </button>-->
+    </div>
+
+    <div fxLayout fxLayoutGap="8px">
+<!--      <button mat-mini-fab color="primary">-->
+<!--        <mat-icon>remove</mat-icon>-->
+<!--      </button>-->
+      <mat-form-field class="">
+        <input matInput
+               type="number"
+               label="Opponent Goals"
+               ngModel
+               name="opponent_goals"
+               required
+               placeholder="Opponent Goals">
+      </mat-form-field>
+<!--      <button mat-mini-fab color="primary">-->
+<!--        <mat-icon>add</mat-icon>-->
+<!--      </button>-->
+    </div>
+
     <div class="earnings"
          [ngClass]="{'winning': current_earnings_calculation > 0, 'losing': current_earnings_calculation < 0}">
       {{calculateEarnings(form.value.player_goals, form.value.opponent_goals) | currency}}

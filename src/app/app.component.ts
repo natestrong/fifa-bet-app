@@ -42,6 +42,7 @@ export class AppComponent {
   calculateEarnings(player_goals: number, opponent_goals: number): number {
     let earnings: number = 0
     let division_base_bet = this.division_base_bets[this.division_level]
+    let division_goal_cost = division_base_bet * this.goal_cost_multiplier
 
     if (player_goals == opponent_goals) {
       // TIE
@@ -49,11 +50,11 @@ export class AppComponent {
       // WIN
     } else if (player_goals > opponent_goals) {
       earnings += division_base_bet
-      earnings += (player_goals - opponent_goals) * this.goal_cost_multiplier
+      earnings += (player_goals - opponent_goals) * division_goal_cost
       // LOSE
     } else if (player_goals < opponent_goals) {
-      earnings += division_base_bet
-      earnings += (player_goals - opponent_goals) * this.goal_cost_multiplier
+      earnings -= division_base_bet
+      earnings -= (opponent_goals - player_goals) * division_goal_cost
     }
     this.current_earnings_calculation = earnings
     return earnings
@@ -77,5 +78,10 @@ export class AppComponent {
         this.games_drawn++
       }
     }
+    form.resetForm()
   }
+  //
+  // onIncrementForm(form) {
+  //   form.value.player_goals ++
+  // }
 }
